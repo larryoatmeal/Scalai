@@ -15,7 +15,14 @@ object ApplicationBuild extends Build {
 
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
-    // Add your own project settings here      
+    // Add your own project settings here
+    initialCommands := """
+       |// make app resources accessible
+       |Thread.currentThread.setContextClassLoader(getClass.getClassLoader)
+       |new play.core.StaticApplication(new java.io.File("."))
+       |import com.sogima.ai._
+      """.stripMargin
+
   )
 
 }
