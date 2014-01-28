@@ -9,10 +9,10 @@ class DummyProblem extends Problem{
 
 	def initialState = 1
 	def getSuccessors(state: State) = {
-		List(SuccessorFunction(state+1, s"GO TO ${state+1}"), SuccessorFunction(state-1, s"GO TO ${state-1}"))
+		List(SuccessorFunction(state+3, s"GO TO ${state+3}"), SuccessorFunction(state-5, s"GO TO ${state-5}"))
 	} 
-
-	def isGoalState(state: State) = state == 10
+	
+	def isGoalState(state: State) = state == 11
 
 	def cost(action: Action): Double = 1.0
 	def heuristic(state: State): Double = Math.abs(state - 10).toDouble
@@ -22,7 +22,8 @@ class DummyProblem extends Problem{
 object Master{
 	def main(){
 		println("AI Master-----------------")
-
+		val s = new Search(new DummyProblem())
+		println(s.AStarGraph)
 
 
 	}
